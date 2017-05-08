@@ -3,7 +3,8 @@
 
 // Variables
 $white: #ffffff;
-$light-blue: rgba(100,255, 218, 0.1);
+$light-blue: #64ffda;
+$darker-blue: #64ffdb;
 $green: #69F0AE;
 $light-orange: #FF9E80;
 $orange: #FF6E40;
@@ -23,24 +24,29 @@ body {
         margin: 0;
     }
     .section {
+        overflow: hidden;
+        // visibility: hidden;
+        top: 0;
         width: 100%;
         height: 100vh;
         position: absolute;
-        overflow: hidden;
-        visibility: hidden;
-        top: 0;
+        background-color: $white;
+
         .nav {
             position: absolute;
             top: 0;
             width: 100%;
-            height: 70px;
+            height: 60px;
             display: flex;
             flex-direction: row;
             justify-content: space-between;
             font-size: 16px;
-            color: $text;
+            color: $white;
+            background: #323232;
             &-left {
                 padding: 20px 0 0 30px;
+                z-index: 4;
+                color: $text;
                 span {
                     text-transform: uppercase;
                 }
@@ -69,8 +75,7 @@ body {
     }
     .welcome-section {
         &-top,
-        &-back,
-        &-parallax {
+        &-back {
             position: absolute;
             left: 0;
             right: 0;
@@ -87,21 +92,29 @@ body {
             }
         }
         &-top {
-            background-image: -webkit-gradient( linear, left top, right top, color-stop(0, $green), color-stop(0.5, $light-orange), color-stop(1, $orange) );
-            background-image: gradient( linear, left top, right top, color-stop(0, $green), color-stop(0.5, $light-orange), color-stop(1, $orange) );
-            color:transparent;
+            // OPTION 1
+            // background-image: -webkit-gradient( linear, left top, right top, color-stop(0, $green), color-stop(0.5, $light-orange), color-stop(1, $orange) );
+            // background-image: gradient( linear, left top, right top, color-stop(0, $green), color-stop(0.5, $light-orange), color-stop(1, $orange) );
+            // color:transparent;
+            // -webkit-background-clip: text;
+            // background-clip: text;
+            // z-index: 1;
+
+            // OPTION 2
+            // background: linear-gradient(270deg, #FCFF00, #18f0b8, #18a2f0, #FCFF00);
+
+            background: linear-gradient(270deg, $green, $light-blue, $light-orange, $green);
+            background-size: 600% 600%;
+            -webkit-animation: Gradient 3s ease infinite;
+            -moz-animation: Gradient 3s ease infinite;
+            animation: Gradient 3s ease infinite;
             -webkit-background-clip: text;
-            background-clip: text;
-            z-index: 1;
+            -webkit-text-fill-color: transparent;
+
         }
         &-back {
-            z-index: 3;
             clip-path: polygon(-20% 0%, 20% 0%, 120% 100%, 90% 105%);
             background-color: $light-blue;
-        }
-        &-parallax {
-            color: blue;
-            z-index: 2
         }
     }
 
@@ -156,5 +169,45 @@ body {
         }
 
     }
+}
 
+
+
+////////////////////////
+
+// .element {
+// 	background: linear-gradient(270deg, #FCFF00, #18f0b8, #18a2f0, #FCFF00);
+// 	background-size: 600% 600%;
+// 	-webkit-animation: Gradient 3s ease infinite;
+// 	-moz-animation: Gradient 3s ease infinite;
+// 	animation: Gradient 3s ease infinite;
+// 	-webkit-background-clip: text;
+// 	-webkit-text-fill-color: transparent;
+// }
+
+@-webkit-keyframes Gradient {
+  0%, 100% {
+    background-position: 0 50%
+  }
+  50% {
+    background-position: 100% 50%
+  }
+}
+
+@-moz-keyframes Gradient {
+  0%, 100% {
+    background-position: 0 50%
+  }
+  50% {
+    background-position: 100% 50%
+  }
+}
+
+@keyframes Gradient {
+  0%, 100% {
+    background-position: 0 50%
+  }
+  50% {
+    background-position: 100% 50%
+  }
 }
