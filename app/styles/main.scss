@@ -20,20 +20,21 @@ body {
     font-family: 'Montserrat', sans-serif;
     font-weight: 100;
     overflow: hidden;
+
     p {
         margin: 0;
     }
+
     .section {
         overflow: hidden;
-        // visibility: hidden;
         top: 0;
         width: 100%;
         height: 100vh;
         position: absolute;
-        background-color: $white;
+        background-color: #fafafa;
 
         .nav {
-            position: absolute;
+            position: fixed;
             top: 0;
             width: 100%;
             height: 60px;
@@ -42,67 +43,169 @@ body {
             justify-content: space-between;
             font-size: 16px;
             color: $white;
-            background: #323232;
+            background: #37474f;
+            max-width: 60px;
+            right: 0;
+            z-index: 1;
+            transition-duration: 0.35s;
+
+            &:before,
+            &:after {
+                content: '';
+                width: 30px;
+                height: 2px;
+                background-color: $white;
+                position: absolute;
+                left: 0;
+                right: 0;
+                margin: 0 auto;
+                transition-delay: 0.30s;
+                opacity: 1;
+                visibility: visible;
+                transition: all 0.1s ease-in-out;
+            }
+
+            &:before {
+                top: 30px;
+            }
+
+            &:after {
+                top: 25px;
+            }
+
             &-left {
                 padding: 20px 0 0 30px;
                 z-index: 4;
-                color: $text;
+                color: $white;
                 span {
                     text-transform: uppercase;
                 }
             }
+
             &-right {
                 width: 50%;
                 display: flex;
                 justify-content: space-between;
                 padding: 20px 30px 0 0;
+
+                a {
+                    position: relative;
+                    cursor: pointer;
+                    &:after,
+                    &:before {
+                        content: '';
+                        position: absolute;
+                        width: 0%;
+                        height: 1px;
+                        top: 10px;
+                        margin-top: -0.5px;
+                        background: #fff;
+                    }
+
+                    &:before {
+                        left: -1.5px;
+                    }
+                    &:after {
+                        right: 1.5px;
+                        background: #fff;
+                        transition: width 0.8s cubic-bezier(0.22, 0.61, 0.36, 1);
+                    }
+
+                    &:hover {
+
+                        &:before {
+                            background: #fff;
+                            width: 100%;
+                            transition: width 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
+                        }
+
+                        &:after {
+                            background: transparent;
+                            width: 100%;
+                            transition: 0s;
+                        }
+                    }
+                }
+            }
+
+            &-left, &-right {
+                transition: all .2s ease-in-out;
+                opacity: 0;
+                visibility: hidden;
+
+                p, a {
+                    transform: translate3d(0,-10px,0);
+                    opacity: 0;
+                    transition: opacity 0.2s, transform 0.35s;
+                    text-transform: uppercase;
+                }
+            }
+
+            &:hover {
+                max-width: 100%;
+                height: 120px;
+
+                .nav-left, .nav-right {
+                    opacity: 1;
+                    visibility: visible;
+
+                    p, a {
+                        transform: translate3d(0,30px,0);
+                        transition-duration: 0.35s;
+                        opacity: 1;
+                        transition-delay: 0.30s;
+                    }
+                }
+
+                &:before,
+                &:after {
+                    opacity: 0;
+                    visibility: hidden;
+                    transition: all 0.1s ease-in-out;
+                }
             }
         }
+
         .title {
             position: absolute;
             left: 0;
             top: 0;
             height: 10vh;
             width: 100%;
-            padding-top: 20vh;
+            padding-top: 17vh;
             left: 10%;
             text-transform: uppercase;
         }
+
         &.active {
             visibility: visible;
             opacity: 1;
         }
     }
+
     .welcome-section {
+
         &-top,
         &-back {
+
             position: absolute;
             left: 0;
             right: 0;
             top: 0;
             height: 100vh;
             text-align: center;
-            font-size: 350px;
+            font-size: 31vw;
             text-transform: uppercase;
+
             span {
                 height: 81%;
                 width: 100%;
                 display: block;
-                padding-top: 10%;
+                padding-top: 9vh;
             }
         }
+
         &-top {
-            // OPTION 1
-            // background-image: -webkit-gradient( linear, left top, right top, color-stop(0, $green), color-stop(0.5, $light-orange), color-stop(1, $orange) );
-            // background-image: gradient( linear, left top, right top, color-stop(0, $green), color-stop(0.5, $light-orange), color-stop(1, $orange) );
-            // color:transparent;
-            // -webkit-background-clip: text;
-            // background-clip: text;
-            // z-index: 1;
-
-            // OPTION 2
-            // background: linear-gradient(270deg, #FCFF00, #18f0b8, #18a2f0, #FCFF00);
-
             background: linear-gradient(270deg, $green, $light-blue, $light-orange, $green);
             background-size: 600% 600%;
             -webkit-animation: Gradient 3s ease infinite;
@@ -112,9 +215,11 @@ body {
             -webkit-text-fill-color: transparent;
 
         }
+
         &-back {
             clip-path: polygon(-20% 0%, 20% 0%, 120% 100%, 90% 105%);
-            background-color: $light-blue;
+            // background-color: rgba(100, 255, 218, 0.0980392);
+            background-color: #b2dfdb;
         }
     }
 
@@ -122,6 +227,7 @@ body {
     .experience2-section,
     .experience3-section,
     .skills-section {
+
         .welcome-section-top,
         .welcome-section-back {
             font-size: 16px;
@@ -129,12 +235,14 @@ body {
             letter-spacing: 3px;
             line-height: 16px;
             text-transform: inherit;
+
             span {
                 max-width: 80%;
                 margin: 0 auto;
                 padding-top: 30vh;
             }
         }
+
         .learned {
             position: absolute;
             left: 0;
@@ -142,6 +250,7 @@ body {
             height: 35vh;
             width: 100%;
             text-transform: uppercase;
+
             .box {
                 display: flex;
                 max-width: 60%;
@@ -149,10 +258,85 @@ body {
                 padding-left: 10%;
                 align-items: center;
                 padding-bottom: 30px;
+                margin: 5px;
+            }
+
+            &.boxes {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+
+                .box {
+                    flex-direction: column;
+                    padding-left: 0;
+                    flex: 1 1 30%;
+
+                    &-content {
+                        border: solid 1px #f8f8f8;
+                        border-radius: 2px;
+                        min-width: 100%;
+                        height: 100%;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: center;
+                        transition: all .2s ease-in-out;
+
+                        span {
+                            opacity: 0;
+                            visibility: hidden;
+                            font-size: 13px;
+                            font-weight: 100;
+                            text-align: center;
+                            transition: opacity 0.2s, transform 0.35s;
+                            transform: translate3d(0,60px,0);
+                            padding: 1em;
+
+                        }
+
+                        &:hover {
+                            background-color: $light-orange;
+                            color: $white;
+                            // font-weight: bold;
+                            cursor: pointer;
+                            z-index: 1;
+                            transform: scaleY(1.1);
+                            box-shadow: 0 2px 5px 2px rgba(32, 32, 32, 0.15);
+                            border: 0;
+
+                            span {
+                                opacity: 1;
+                                visibility: visible;
+                                transition-delay: 0.05s;
+                                -webkit-transition-duration: 0.35s;
+                                transition-duration: 0.35s;
+                                transform: translate3d(0,30px,0);
+
+                            }
+                        }
+                    }
+
+                }
+
+                &.boxes-row-top {
+                    bottom: 35vh;
+                }
             }
         }
     }
+
+    .experience1-section {
+
+        .welcome-section-top span,
+        .welcome-section-back span {
+            padding-top: 35vh;
+            max-width: 60em;
+            line-height: 1.5;
+        }
+    }
+
     .skills-section {
+
         .box-wrap {
             height: 81%;
             display: block;
@@ -170,20 +354,6 @@ body {
 
     }
 }
-
-
-
-////////////////////////
-
-// .element {
-// 	background: linear-gradient(270deg, #FCFF00, #18f0b8, #18a2f0, #FCFF00);
-// 	background-size: 600% 600%;
-// 	-webkit-animation: Gradient 3s ease infinite;
-// 	-moz-animation: Gradient 3s ease infinite;
-// 	animation: Gradient 3s ease infinite;
-// 	-webkit-background-clip: text;
-// 	-webkit-text-fill-color: transparent;
-// }
 
 @-webkit-keyframes Gradient {
   0%, 100% {
