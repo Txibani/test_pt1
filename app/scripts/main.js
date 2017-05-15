@@ -1,67 +1,4 @@
-// Detects mousewheel up and down
-// On load we need to set values to display diferent sections
-// var fixedPoint = 0; // Set top value
-// var fixedHeight = window.innerHeight; // Save window height;
-// $(window).bind('wheel DOMMouseScroll', function(e){
-//
-//     var wheelCheckDelta = e.originalEvent.wheelDeltaY; //Returns a double representing the vertical scroll amount.
-//     var wheelCheckDetail = e.originalEvent.detail;
-//     var currentDiv = $('.section.active');
-//     console.log(wheelCheckDelta);
-
-    // ++x (pre-increment) means "increment the variable; the value of the expression is the final value"
-    // x++ (post-increment) means "remember the original value, then increment the variable; the value of the expression is the original value"
-
-    //
-    // var count = 10;
-    // if (e.originalEvent.wheelDelta >= 120) {
-    //     $('#oCounter').text(++count + '0%');
-    //     console.log(count);
-    // } else if (e.originalEvent.wheelDelta <= -120) {
-    //     $('#oCounter').text(++count + '0%');
-    //     console.log(count);
-    // }
-    // console.log(e.originalEvent.wheelDelta);
-
-    // function Picture()
-    // {
-    //     if (event.wheelDelta >= 120)
-    //         Resize(++count);
-    //     else if (event.wheelDelta <= -120)
-    //         Resize(--count);
-    //     return false;
-    // }
-    // function Resize(c){
-    //     oImage.style.zoom = c + '0%';
-    // }
-
-    // if (wheelCheckDelta > 0 || wheelCheckDetail < 0) { // If user scrolls up
-    //
-    //     var nextElement = currentDiv.prev();
-    //     if (nextElement.length !== 0) {
-    //         // Remove active class from current section div to hide content
-    //         currentDiv.removeClass('active');
-    //         // Add class active to the div class section prev to display content
-    //         nextElement.addClass('active');
-    //     }
-    // }
-    // else { // If user scrolls down
-    //     if (wheelCheckDelta < -100) {
-    //
-    //         var nextElement = currentDiv.next()
-    //         // Check if current div is the last one, in that case do nothing
-    //         if (nextElement.length !== 0) {
-    //             // Remove active class from current section div to hide content
-    //             currentDiv.removeClass('active');
-    //             // Add class active to the div class section after to display content
-    //             nextElement.addClass('active');
-    //         }
-    //     }
-    // }
-
-// });
-
-// GSAP
+// Scroll page
 
 var box = document.querySelectorAll('.section'),
     indx = box.length-1,
@@ -73,12 +10,6 @@ for(var i=box.length ; i--;){
 
 document.addEventListener("mousewheel",Go);
 document.addEventListener("DOMMouseScroll",Go);
-// 
-// var D = document.createElement('div');
-// Draggable.create(D,{
-// 	trigger:".box",type:'y',minimumMovement:5,cursor:'n-resize',
-// 	onDrag:function(){ var X=this.getDirection("start")=='up'?1:-1;  Go(X);}
-// });
 
 function Go(e){
 	var SD=isNaN(e)?e.wheelDelta||-e.detail:e;
@@ -89,3 +20,137 @@ function Go(e){
 	};
 	if(isNaN(e))e.preventDefault();
 };
+
+//Navigation bar animation
+
+var nav = document.getElementById('nav');
+var hamburger = document.getElementById('hamburger');
+var navLeftText = document.getElementsByClassName('nav-left');
+var navRightText = document.getElementsByClassName('nav-right');
+
+nav.addEventListener('mouseenter', navShow);
+nav.addEventListener('mouseleave', navHide);
+
+function navShow(e) {
+    TweenMax.to(nav, 0.2, {
+        height: '120px',
+        opacity: 1,
+        onComplete: function() {
+            TweenMax.to(hamburger, 0.2, {
+                delay: 0.2,
+                width: '0',
+                right: '0',
+                opacity: 0,
+                onComplete: function() {
+                    TweenMax.to(nav, 0.2, {
+                        delay: 0.2,
+                        width: '100%',
+                        height: '120px',
+                        onComplete: function() {
+                            TweenMax.to([navLeftText, navRightText], 0.2, {
+                                delay: 0.4,
+                                opacity: '1',
+                            })
+                        }
+                    });
+                }
+            });
+        }
+    });
+}
+
+function navHide() {
+    TweenMax.to([navLeftText, navRightText], 0.2, {
+        delay: 0.4,
+        opacity: '0',
+        onComplete: function() {
+            TweenMax.to(nav, 0.2, {
+                delay: 0.2,
+                width: '60px',
+                onComplete: function() {
+                    TweenMax.to(hamburger, 0.1, {
+                        delay: 0.4,
+                        right: '30px',
+                        opacity: 1,
+                        onComplete: function() {
+                            TweenMax.to(nav, 0.2, {
+                                delay: 0.2,
+                                height: '60px',
+                                width: '60px'
+                            });
+                        }
+                    });
+                }
+
+            });
+        }
+    })
+}
+
+// Box content animation
+
+var boxContent = document.getElementsByClassName('box-content');
+var parentBox = document.getElementsByClassName('learned');
+var countBox;
+
+// console.log(boxContent);
+// console.log(parentBox);
+
+boxContent[0].addEventListener('mouseenter',expandBox);
+
+function expandBox() {
+    var current = this.parentNode;
+    var parentCurrent = this.parentNode.parentNode;
+    var node = parentCurrent.childNodes;
+    var currentChild = current.childNodes;
+
+    for (var i = 0; i < currentChild.length ; i++) {
+        if (currentChild[i].nodeType === 1) {
+            currentChild = currentChild[i];
+        }
+    }
+
+    for (var i = 0; i < node.length ; i++) {
+        if (node[i].nodeType === 1) {
+            if (current !== node[i]) {
+                TweenMax.to(node[i], 0.3, {
+                    delay: 0.2,
+                    width: '0',
+                    opacity: 0,
+                    onComplete: function() {
+                        TweenMax.to(current, 0.4, {
+                            delay: 0.2,
+                            className: '+=fullWidth',
+                            conComplete: function() {
+                                TweenMax.to(current, 0.2, {
+                                    delay: 0.2,
+                                    className: '+=fullHeight',
+                                    onComplete: function() {
+                                        TweenMax.to(currentChild, 0.2, {
+                                            delay: 0.2,
+                                            className: '+=hideShadow',
+                                            onComplete: function() {
+                                                TweenMax.to(parentCurrent, 0.2, {
+                                                    delay: 0.2,
+                                                    className: '+=totalHeight',
+
+                                                })
+                                            }
+                                        })
+                                    }
+                                })
+                            }
+                        })
+                    }
+                })
+            }
+        }
+    }
+}
+
+function closeBox() {
+    // Click close button
+    // height back to normal
+    // Width back to normal
+    // Reapear the hiddens boxes
+}
