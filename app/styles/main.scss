@@ -72,11 +72,9 @@ body {
             .top, .medium {
                 margin-bottom: 4px;
             }
-
             .medium {
                 width: 20px;
             }
-
         }
 
         &-left {
@@ -239,6 +237,42 @@ body {
             text-transform: uppercase;
             height: calc(100% - 130px);
 
+            .close-btn {
+                opacity: 0;
+                width: 50px;
+                height: 50px;
+                position: absolute;
+                right: 0;
+                top: 0;
+                bottom: 0;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                z-index: 12;
+
+                &:hover {
+                    cursor: pointer;
+                }
+
+                .left,
+                .right {
+                    height: 1px;
+                    width: 100%;
+                    display: block;
+                    background: white;
+                    border-radius: 3px;
+                }
+
+                .left {
+                    transform: rotate(45deg);
+                }
+
+                .right {
+                    transform: rotate(-45deg);
+                }
+            }
+
             &.positioning {
                 position: absolute;
             }
@@ -286,16 +320,33 @@ body {
                         // text-shadow: 0 1px 2px;
                         box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.14), 0 17px 50px 0 rgba(0, 0, 0, 0.09);
 
-                        span {
-                            opacity: 0;
-                            visibility: hidden;
-                            font-size: 13px;
-                            font-weight: 100;
-                            text-align: center;
-                            transition: opacity 0.2s, transform 0.35s;
-                            transform: translate3d(0,60px,0);
-                            padding: 1em;
+                        p {
 
+                            &:hover {
+                                cursor: pointer;
+                            }
+                        }
+
+                        .overlay-content {
+                            display: none;
+
+                            p {
+
+                                &:hover {
+                                    cursor: auto;
+                                }
+                            }
+
+                            span {
+                                text-transform: none;
+                                font-size: 13px;
+                                font-weight: 100;
+                                text-align: center;
+                                transition: opacity 0.2s, transform 0.35s;
+                                transform: translate3d(0,60px,0);
+                                padding: 1em;
+
+                            }
                         }
 
                         &.hideShadow {
@@ -322,13 +373,32 @@ body {
         }
     }
 
+    .welcome-section {
+        .welcome-section-top span,
+        .welcome-section-back span {
+            font-family: 'Abril Fatface';
+        }
+    }
+
     .experience1-section {
 
         .welcome-section-top span,
         .welcome-section-back span {
-            padding-top: 35vh;
+            padding-top: 33vh;
             max-width: 60em;
-            line-height: 1.5;
+            line-height: 2;
+        }
+
+        .about-me {
+            max-width: 300px;
+            height: 600px;
+            font-size: 120px;
+            color: $pink-low;
+            opacity: 0.5;
+            position: absolute;
+            bottom: 0;
+            font-family: 'Abril Fatface';
+            margin-bottom: -100px;
         }
     }
 
@@ -346,6 +416,11 @@ body {
                 flex-direction: row;
                 justify-content: space-between;
                 padding-bottom: 4em;
+            }
+        }
+        p {
+            span {
+                display: none;
             }
         }
 
@@ -388,6 +463,54 @@ body {
             }
         }
 
+        .skill-box {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 40px;
+            font-family: 'Abril Fatface';
+            background-color: $pink-dark;
+
+            #close-slide {
+                opacity: 0;
+                width: 30px;
+                height: 30px;
+                position: inherit;
+                right: 0;
+                top: 0;
+                bottom: 0;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                z-index: 12;
+
+                &:hover {
+                    cursor: pointer;
+                }
+
+                .left,
+                .right {
+                    height: 1px;
+                    width: 100%;
+                    display: block;
+                    background: white;
+                    border-radius: 3px;
+                }
+
+                .left {
+                    transform: rotate(45deg);
+                }
+
+                .right {
+                    transform: rotate(-45deg);
+                }
+            }
+        }
     }
 }
 
