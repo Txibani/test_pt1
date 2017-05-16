@@ -258,7 +258,7 @@ function showSkills(e) {
             TweenMax.to(closeSkills, 0.2, {
                 delay: 0.2,
                 width: '30px',
-                right: '0',
+                right: '5px',
                 opacity: 1,
                 onComplete: function() {
                     skillBox.querySelector('p').innerHTML = skillShow;
