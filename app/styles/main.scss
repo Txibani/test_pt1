@@ -19,6 +19,21 @@ $pink-low: #F8BBD0;
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Abril+Fatface');
 
+//
+.show-for-large {
+    display: none !important;
+    @media screen and (min-width: 768px) {
+        display: flex !important;
+    }
+}
+
+.show-for-small {
+    display: none !important;
+    @media screen and (max-width: 768px) {
+        display: flex !important;
+    }
+}
+
 body {
     background: $white;
     padding: 0;
@@ -142,6 +157,63 @@ body {
                 text-transform: uppercase;
             }
         }
+
+        .mobile-nav {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            opacity: 0;
+            visibility: hidden;
+
+            p, a {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 10%;
+            }
+
+            a {
+                position: relative;
+                cursor: pointer;
+                &:after,
+                &:before {
+                    content: '';
+                    position: absolute;
+                    width: 0%;
+                    height: 1px;
+                    top: 50%;
+                    margin-top: -0.5px;
+                    background: $pink-dark;
+                }
+
+                &:before {
+                    left: -1.5px;
+                }
+                &:after {
+                    right: 1.5px;
+                    background: $pink-dark;
+                    transition: width 0.8s cubic-bezier(0.22, 0.61, 0.36, 1);
+                }
+
+                &:hover {
+
+                    &:before {
+                        background: $pink-dark;
+                        width: 100%;
+                        transition: width 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
+                    }
+
+                    &:after {
+                        background: transparent;
+                        width: 100%;
+                        transition: 0s;
+                    }
+                }
+            }
+        }
     }
 
     .section {
@@ -188,7 +260,24 @@ body {
                 height: 82%;
                 width: 100%;
                 display: block;
-                padding-top: 12vh;
+            }
+
+            .hello-wrap {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                padding-top: 0;
+
+                @media screen and (max-width: 767px) {
+                    flex-direction: column;
+                    padding-top: 7vh;
+                    font-size: 18vh;
+
+                    span {
+                        height: 20%;
+                        padding-top: 0;
+                    }
+                }
             }
         }
 
@@ -213,7 +302,6 @@ body {
 
     .experience1-section,
     .experience2-section,
-    .experience3-section,
     .skills-section {
 
         .welcome-section-top,
@@ -228,150 +316,76 @@ body {
                 max-width: 80%;
                 margin: 0 auto;
                 padding-top: 30vh;
+
             }
         }
 
-        .learned {
-            left: 0;
-            bottom: 0;
-            width: 100%;
-            text-transform: uppercase;
-            height: calc(100% - 130px);
-
-            .close-btn {
-                opacity: 0;
-                width: 50px;
-                height: 50px;
-                position: absolute;
-                right: 0;
-                top: 0;
-                bottom: 0;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                z-index: 12;
-
-                &:hover {
-                    cursor: pointer;
-                }
-
-                .left,
-                .right {
-                    height: 1px;
-                    width: 100%;
-                    display: block;
-                    background: white;
-                    border-radius: 3px;
-                }
-
-                .left {
-                    transform: rotate(45deg);
-                }
-
-                .right {
-                    transform: rotate(-45deg);
-                }
-            }
-
-            &.positioning {
-                position: absolute;
-            }
-
-            .box {
-                display: flex;
-                max-width: 60%;
-                justify-content: space-between;
-                padding-left: 10%;
-                align-items: center;
-                padding-bottom: 30px;
-                margin: 5px;
-                &.fullWidth {
-                    min-width: 100%;
-                    flex: 1 1 100% ;
-                    box-shadow: 0;
-                }
-                &.fullHeight {
-                    height: calc(100% - 2em);
-                }
-            }
-
-            &.boxes {
-                display: flex;
-                flex-direction: row;
-                justify-content: center;
-
-                .box {
-                    flex-direction: column;
-                    padding-left: 0;
-                    flex: 1 1 30%;
-
-                    &-content {
-                        border-radius: 2px;
-                        min-width: 100%;
-                        height: 100%;
-                        display: flex;
-                        flex-direction: column;
-                        justify-content: center;
-                        align-items: center;
-                        font-size: 40px;
-                        text-align: center;
-                        font-family: 'Abril Fatface';
-                        color: $pink-dark;
-                        // text-shadow: 0 1px 2px;
-                        box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.14), 0 17px 50px 0 rgba(0, 0, 0, 0.09);
-
-                        p {
-
-                            &:hover {
-                                cursor: pointer;
-                            }
-                        }
-
-                        .overlay-content {
-                            display: none;
-
-                            p {
-
-                                &:hover {
-                                    cursor: auto;
-                                }
-                            }
-
-                            span {
-                                text-transform: none;
-                                font-size: 13px;
-                                font-weight: 100;
-                                text-align: center;
-                                transition: opacity 0.2s, transform 0.35s;
-                                transform: translate3d(0,60px,0);
-                                padding: 1em;
-
-                            }
-                        }
-
-                        &.hideShadow {
-                            box-shadow: none;
-                            color: #323232;
-                        }
-                    }
-                }
-
-                &.boxes-row-top {
-                    bottom: 35vh;
-                }
-            }
-
-            &.totalHeight {
-                height: 100%;
-                background-size: 600% 600%;
-                animation: Gradient 5s ease infinite;
-                background: linear-gradient(270deg, $pink-dark, #D32F2F, #FF5252, $pink-midLow, $pink-dark);
-                z-index: 10;
-                margin: 0;
-                padding: 0;
-            }
-        }
+        // .learned {
+        //     left: 0;
+        //     bottom: 0;
+        //     width: 100%;
+        //     text-transform: uppercase;
+        //     height: calc(100% - 80px);
+        //
+        //     &-row {
+        //         display: flex;
+        //         height: 100%;
+        //         display: flex;
+        //         width: 100%;
+        //         justify-content: space-between;
+        //         align-items: center;
+        //         margin: 2em;
+        //         // background: $pink-medium;
+        //
+        //         .l-column {
+        //             height: 100%;
+        //             width: 25%;
+        //
+        //             .main {
+        //                 text-align: center;
+        //                 color: $pink-dark;
+        //             }
+        //
+        //             // &.easyproperty .main {
+        //             //     padding-top: 8vh;
+        //             // }
+        //             // &.powa .main {
+        //             //     padding-top: 60vh;
+        //             //     text-align: left;
+        //             // }
+        //             // &.portfolio .main {
+        //             //     padding-top: 45vh;
+        //             //     text-align: left;
+        //             // }
+        //             // &.stuff .main {
+        //             //     padding-top: 25vh;
+        //             // }
+        //
+        //
+        //             .exp-content {
+        //                 display: none;
+        //             }
+        //         }
+        //
+        //         .l-column:last-child {
+        //             border-right: 0;
+        //         }
+        //     }
+        //
+        //     &.positioning {
+        //         position: absolute;
+        //     }
+        //
+        //     &.totalHeight {
+        //         height: 100%;
+        //         background-size: 600% 600%;
+        //         animation: Gradient 5s ease infinite;
+        //         background: linear-gradient(270deg, $pink-dark, #D32F2F, #FF5252, $pink-midLow, $pink-dark);
+        //         z-index: 10;
+        //         margin: 0;
+        //         padding: 0;
+        //     }
+        // }
     }
 
     .welcome-section {
@@ -391,19 +405,100 @@ body {
         }
     }
 
+    .experience2-section {
+
+        .go-btn {
+            position: absolute;
+            left: 121vh;
+            top: 28vh;
+            background-color: $pink-dark;
+            color: $white;
+            width: 50px;
+            height: 50px;
+            border-radius: 100%;
+            box-shadow: 0 2px 13px rgba(50,50,50,0.4);
+            animation: bounce 0.8s infinite alternate;
+
+            img {
+                transform: scale(0.7);
+                padding-left: 2px;
+            }
+
+        }
+
+        .projects-wrap {
+            height: calc(100% - 140px);
+            width: 150%;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+            padding-left: 380px;
+            padding-top: 140px;
+            position: absolute;
+
+            .l-column {
+                flex: 1 1 25%;
+                justify-content: center;
+                display: flex;
+                background: $pink-low;
+                margin-right: 2em;
+                height: 100%;
+                max-height: 250px;
+                align-items: center;
+                box-shadow: 0 2px 9px rgba(50,50,50,0.25);
+
+                .main {
+                    color: $white;
+                }
+            }
+
+            .exp-content {
+                display: none;
+
+            }
+        }
+    }
+
     .experience1-section,
-    .skills-section {
+    .skills-section,
+    .experience2-section {
         .about-me {
             max-width: 300px;
             height: 600px;
             font-size: 120px;
             color: $pink-low;
-            opacity: 0.5;
+            opacity: 0.3;
             position: absolute;
             bottom: 0;
             font-family: 'Abril Fatface';
             margin-bottom: -100px;
-            z-index: 1;
+            z-index: 0;
+        }
+    }
+
+    @media screen and (max-width: 767px) {
+        .experience1-section {
+
+            .welcome-section-top,
+            .welcome-section-back {
+                height: 100%;
+                font-size: 15px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 100%;
+
+                span {
+                    padding-top: 0;
+                    margin: 0;
+                    display: block;
+                    margin: auto 0;
+                    height: auto;
+                    padding: 2em 1em 0;
+                }
+            }
         }
     }
 
@@ -528,6 +623,28 @@ body {
         .about-me {
             z-index: 2
         }
+
+        @media screen and (max-width: 900px) {
+
+            .box-wrap {
+                height: 100%;
+                display: block;
+                max-width: 100%;
+                margin: auto;
+                padding-top: 0;
+                padding: 2em;
+
+                .skills-section {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+                    padding-bottom: 0;
+                    height: 30%;
+                    align-items: center;
+                    flex-wrap: wrap;
+                }
+            }
+        }
     }
 }
 
@@ -556,4 +673,16 @@ body {
   50% {
     background-position: 100% 50%
   }
+}
+
+@-webkit-keyframes bounce {
+  to { -webkit-transform: scale(1.1); }
+}
+
+@-moz-keyframes bounce {
+  to { -moz-transform: scale(1.1); }
+}
+
+@keyframes bounce {
+  to { transform: scale(1.1); }
 }

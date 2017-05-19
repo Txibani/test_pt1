@@ -29,16 +29,23 @@
     <div id="modal-1" class="overlay">
     </div>
 
-    <nav id="nav" class="nav"> <!--Add the menu with js to each section-->
+    <nav id="nav" class="nav">
         <div id="hamburger" class="hamburger">
             <span class="top"></span>
             <span class="medium"></span>
             <span class="bottom"></span>
         </div>
-        <div class="nav-left">
+        <div class="nav-left show-for-large">
             <p><span>Contact</span> hello@maixiba.co.uk</p>
         </div>
-        <div class="nav-right">
+        <div class="nav-right show-for-large">
+            <a>Homepage</a>
+            <a>Experience</a>
+            <a>Skills</a>
+        </div>
+        <div class="show-for-small mobile-nav">
+
+            <p>hello@maixiba.co.uk</p>
             <a>Homepage</a>
             <a>Experience</a>
             <a>Skills</a>
@@ -46,7 +53,6 @@
     </nav>
 
     <div class="section skills-section">
-        <!-- <p class="title">Skills</p> -->
         <div class="welcome-section-top">
             <div class="box-wrap">
                 <div class="skills-section top">
@@ -113,94 +119,81 @@
         </div>
     </div>
 
-    <!-- <div class="section experience3-section">
-
-        <p class="title">Work</p>
-        <p class="welcome-section-top"><span></span>
-        </p>
-        <p class="welcome-section-back"><span></span>
-        </p>
-
-        <div class="learned top boxes boxes-row-top positioning">
-            <div class="box learned-top">
-                <div class="box-content">
-                    <p>Powa Technologies website</p>
-                </div>
-            </div>
-            <div class="box learned-middle">
-                <div class="box-content">
-                    <p>Merchant Portal</p>
-                </div>
-            </div>
-            <div class="box learned-bottom">
-                <div class="box-content">
-                    <p>Marketing campaigns</p>
-                </div>
-            </div>
-        </div>
-        <div class="learned top boxes boxes-row-mid positioning">
-            <div class="box learned-top">
-                <div class="box-content">
-                    <p>Leckie & Leckie</p>
-                </div>
-            </div>
-            <div class="box learned-middle">
-                <div class="box-content">
-                    <p>Ecommerce website maintenance</p>
-                </div>
-            </div>
-            <div class="box learned-bottom">
-                <div class="box-content">
-                    <p>Jungle Plush page</p>
-                </div>
-            </div>
-        </div>
-    </div> -->
-
     <div class="section experience2-section">
-        <p class="title">Work</p>
-        <p class="welcome-section-top"><span>Here are som of the projects that I've been working on for the past three years:</span>
-        </p>
-        <p class="welcome-section-back"><span>Here are som of the projects that I've been working on for the past three years:</span>
-        </p>
+        <div class="welcome-section-top"><span></span></div>
+        <div class="about-me">Things I've done</div>
+        <div class="welcome-section-back"><span></span></div>
 
-        <div class="learned top boxes positioning">
-            <a class="close-btn">
-                <span class="left"></span>
-                <span class="right"></span>
-            </a>
-            <div class="box learned-top">
-                <div class="box-content">
-                    <p class="hover-content">My portfolio</p>
-                    <div class="overlay-content">
-                        <p>My portfolio</p>
-                        <span>Bla bla blasflksjf aksdfj ksjfks fkskfjsfjsalk fksjf lkasjf kasjfk sj.</span>
-                    </div>
+        <div id="go-btn" class="go-btn">
+            <img src="/images/arrow.png" />
+        </div>
+
+        <div class="projects-wrap">
+            <div class="l-column easyproperty">
+                <p class="main">EasyProperty</p>
+                <div class="exp-content">
+                    <p>EasyProperty</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas aliquam ante ante, ut malesuada ex accumsan ac. Nam justo sapien, malesuada eu vulputate in, facilisis sed tellus. Etiam suscipit bibendum porta. Praesent eget lacus ex. Praesent ut nisl ac nisi congue tincidunt non non justo. Quisque vel ipsum quis leo condimentum sodales. Maecenas lectus ante, ultricies sit amet ipsum nec, iaculis lacinia dui. Cras consectetur blandit erat, ac dictum dui rhoncus non. Nam congue interdum metus, ut ullamcorper purus tempor ullamcorper.</p>
                 </div>
             </div>
-            <div class="box learned-middle">
-                <div class="box-content">
-                    <p class="hover-content">easyProperty website</p>
-                    <div class="overlay-content">
-                        <p>easyProperty website</p>
-                        <span>Bla bla blasflksjf aksdfj ksjfks fkskfjsfjsalk fksjf lkasjf kasjfk sj.</span>
-                    </div>
+            <div class="l-column powa">
+                <p class="main">Powa</p>
+                <div class="exp-content">
+                    <p>Powa</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas aliquam ante ante, ut malesuada ex accumsan ac. Nam justo sapien, malesuada eu vulputate in, facilisis sed tellus. Etiam suscipit bibendum porta. Praesent eget lacus ex. Praesent ut nisl ac nisi congue tincidunt non non justo. Quisque vel ipsum quis leo condimentum sodales. Maecenas lectus ante, ultricies sit amet ipsum nec, iaculis lacinia dui. Cras consectetur blandit erat, ac dictum dui rhoncus non. Nam congue interdum metus, ut ullamcorper purus tempor ullamcorper.</p>
                 </div>
             </div>
-            <div class="box learned-bottom">
-                <div class="box-content">
-                    <p class="hover-content">easyProperty dashboard</p>
-                    <div class="overlay-content">
-                        <p>easyProperty dashboard</p>
-                        <span>Bla bla blasflksjf aksdfj ksjfks fkskfjsfjsalk fksjf lkasjf kasjfk sj.</span>
-                    </div>
+            <div class="l-column portfolio">
+                <p class="main">My Portfolio</p>
+                <div class="exp-content">
+                    <p>My Portfolio</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas aliquam ante ante, ut malesuada ex accumsan ac. Nam justo sapien, malesuada eu vulputate in, facilisis sed tellus. Etiam suscipit bibendum porta. Praesent eget lacus ex. Praesent ut nisl ac nisi congue tincidunt non non justo. Quisque vel ipsum quis leo condimentum sodales. Maecenas lectus ante, ultricies sit amet ipsum nec, iaculis lacinia dui. Cras consectetur blandit erat, ac dictum dui rhoncus non. Nam congue interdum metus, ut ullamcorper purus tempor ullamcorper.</p>
+                </div>
+            </div>
+            <div class="l-column stuff">
+                <p class="main">Stuff</p>
+                <div class="exp-content">
+                    <p>Stuff</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas aliquam ante ante, ut malesuada ex accumsan ac. Nam justo sapien, malesuada eu vulputate in, facilisis sed tellus. Etiam suscipit bibendum porta. Praesent eget lacus ex. Praesent ut nisl ac nisi congue tincidunt non non justo. Quisque vel ipsum quis leo condimentum sodales. Maecenas lectus ante, ultricies sit amet ipsum nec, iaculis lacinia dui. Cras consectetur blandit erat, ac dictum dui rhoncus non. Nam congue interdum metus, ut ullamcorper purus tempor ullamcorper.</p>
                 </div>
             </div>
         </div>
+
+        <!-- <div class="learned top boxes positioning">
+            <div class="learned-row">
+                <div class="l-column easyproperty">
+                    <p class="main">EasyProperty</p>
+                    <div class="exp-content">
+                        <p>EasyProperty</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas aliquam ante ante, ut malesuada ex accumsan ac. Nam justo sapien, malesuada eu vulputate in, facilisis sed tellus. Etiam suscipit bibendum porta. Praesent eget lacus ex. Praesent ut nisl ac nisi congue tincidunt non non justo. Quisque vel ipsum quis leo condimentum sodales. Maecenas lectus ante, ultricies sit amet ipsum nec, iaculis lacinia dui. Cras consectetur blandit erat, ac dictum dui rhoncus non. Nam congue interdum metus, ut ullamcorper purus tempor ullamcorper.</p>
+                    </div>
+                </div>
+                <div class="l-column powa">
+                    <p class="main">Powa</p>
+                    <div class="exp-content">
+                        <p>Powa</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas aliquam ante ante, ut malesuada ex accumsan ac. Nam justo sapien, malesuada eu vulputate in, facilisis sed tellus. Etiam suscipit bibendum porta. Praesent eget lacus ex. Praesent ut nisl ac nisi congue tincidunt non non justo. Quisque vel ipsum quis leo condimentum sodales. Maecenas lectus ante, ultricies sit amet ipsum nec, iaculis lacinia dui. Cras consectetur blandit erat, ac dictum dui rhoncus non. Nam congue interdum metus, ut ullamcorper purus tempor ullamcorper.</p>
+                    </div>
+                </div>
+                <div class="l-column portfolio">
+                    <p class="main">My Portfolio</p>
+                    <div class="exp-content">
+                        <p>My Portfolio</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas aliquam ante ante, ut malesuada ex accumsan ac. Nam justo sapien, malesuada eu vulputate in, facilisis sed tellus. Etiam suscipit bibendum porta. Praesent eget lacus ex. Praesent ut nisl ac nisi congue tincidunt non non justo. Quisque vel ipsum quis leo condimentum sodales. Maecenas lectus ante, ultricies sit amet ipsum nec, iaculis lacinia dui. Cras consectetur blandit erat, ac dictum dui rhoncus non. Nam congue interdum metus, ut ullamcorper purus tempor ullamcorper.</p>
+                    </div>
+                </div>
+                <div class="l-column stuff">
+                    <p class="main">Stuff</p>
+                    <div class="exp-content">
+                        <p>Stuff</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas aliquam ante ante, ut malesuada ex accumsan ac. Nam justo sapien, malesuada eu vulputate in, facilisis sed tellus. Etiam suscipit bibendum porta. Praesent eget lacus ex. Praesent ut nisl ac nisi congue tincidunt non non justo. Quisque vel ipsum quis leo condimentum sodales. Maecenas lectus ante, ultricies sit amet ipsum nec, iaculis lacinia dui. Cras consectetur blandit erat, ac dictum dui rhoncus non. Nam congue interdum metus, ut ullamcorper purus tempor ullamcorper.</p>
+                    </div>
+                </div>
+            </div>
+        </div> -->
     </div>
 
     <div class="section experience1-section">
-        <!-- <p class="title">A bit about me</p> -->
 
         <p class="welcome-section-top">
             <span>My name is Maite, I'm a spanish front-end developer living in London. I've been a frontender for over three years now, and recenlty I've been learning about UX and desing and working on some personal projects. You can check them on my <a href="https://www.behance.net/mtxibanid3fd">behance account</a>. I've never worked as a freelancer so I don't many profesional examples of my work.
@@ -214,8 +207,8 @@
     </div>
 
     <div class="section welcome-section active">
-        <p class="welcome-section-top"><span>Hello</span></p>
-        <p class="welcome-section-back"><span>Hello</span></p>
+        <p class="welcome-section-top"><span class="hello-wrap"><span>H</span><span>e</span><span>l</span><span>l</span><span>o</span></span></p>
+        <p class="welcome-section-back"><span class="hello-wrap"><span>H</span><span>e</span><span>l</span><span>l</span><span>o</span></span></p>
     </div>
 
 

@@ -5,18 +5,40 @@ var box = document.querySelectorAll('.section'),
     Anim ;
 
 for(var i=box.length ; i--;){
-	box[i].anim = TweenLite.to(box[i],0.7,{yPercent:-100,paused:true});
+	box[i].anim = TweenLite.to(box[i],0.7,{
+        yPercent:-100,
+        paused:true,
+        opacity: 0.5,
+    });
 };
 
 document.addEventListener("mousewheel",Go);
 document.addEventListener("DOMMouseScroll",Go);
 
+function throttle(fn, wait, e) {
+  var time = Date.now();
+  return function() {
+    if ((time + wait - Date.now()) < 0) {
+      fn();
+      time = Date.now();
+    }
+  }
+}
+
 function Go(e){
 	var SD=isNaN(e)?e.wheelDelta||-e.detail:e;
-	if(SD>0 && indx>0 ){
-		if(!Anim||!Anim.isActive()){Anim=box[indx].anim.play();  indx--;}
-	}else if(SD<0 && indx<box.length-1){
-		if(!Anim||!Anim.isActive()){indx++;  Anim=box[indx].anim.reverse();}
+	if( SD>0 && indx>0 ){
+        console.log('pal final');
+		if(!Anim||!Anim.isActive()){
+            Anim=box[indx].anim.play();
+            indx--;
+        }
+	}else if( SD<0 && indx<box.length-1 ){
+        console.log('pal principio');
+		if( !Anim||!Anim.isActive() ){
+            indx++;
+            Anim=box[indx].anim.reverse();
+        }
 	};
 	if(isNaN(e))e.preventDefault();
 };
@@ -27,13 +49,23 @@ var nav = document.getElementById('nav');
 var hamburger = document.getElementById('hamburger');
 var navLeftText = document.getElementsByClassName('nav-left');
 var navRightText = document.getElementsByClassName('nav-right');
+var menuHeight = '';
+var menuNav = document.getElementsByClassName('mobile-nav');
 
 nav.addEventListener('mouseenter', navShow);
 nav.addEventListener('mouseleave', navHide);
 
+// Mobile
+if (window.innerWidth < 767) {
+    menuHeight = '100%';
+} else {
+    menuHeight = '120px';
+}
+
 function navShow(e) {
+    console.log(menuHeight);
     TweenMax.to(nav, 0.2, {
-        height: '120px',
+        height: menuHeight,
         opacity: 1,
         onComplete: function() {
             TweenMax.to(hamburger, 0.2, {
@@ -45,12 +77,20 @@ function navShow(e) {
                     TweenMax.to(nav, 0.2, {
                         delay: 0.2,
                         width: '100%',
-                        height: '120px',
+                        height: menuHeight,
                         onComplete: function() {
-                            TweenMax.to([navLeftText, navRightText], 0.2, {
-                                delay: 0.4,
-                                opacity: '1',
-                            })
+                            if (window.innerWidth < 767) {
+                                TweenMax.to(menuNav, 0.2, {
+                                    delay: 0.4,
+                                    opacity: '1',
+                                    visibility: 'visible',
+                                })
+                            } else {
+                                TweenMax.to([navLeftText, navRightText], 0.2, {
+                                    delay: 0.4,
+                                    opacity: '1',
+                                })
+                            }
                         }
                     });
                 }
@@ -60,31 +100,41 @@ function navShow(e) {
 }
 
 function navHide() {
-    TweenMax.to([navLeftText, navRightText], 0.2, {
+
+    if (window.innerWidth < 767) {
+        TweenMax.to(menuNav, 0.2, {
+            delay: 0.4,
+            opacity: '0',
+            visibility: 'hidden',
+        })
+    } else {
+        TweenMax.to([navLeftText, navRightText], 0.2, {
+            delay: 0.4,
+            opacity: '0',
+        })
+    }
+
+    TweenMax.to(nav, 0.2, {
         delay: 0.4,
-        opacity: '0',
+        width: '60px',
         onComplete: function() {
-            TweenMax.to(nav, 0.2, {
-                delay: 0.2,
-                width: '60px',
+            TweenMax.to(hamburger, 0.1, {
+                delay: 0.4,
+                right: '30px',
+                opacity: 1,
                 onComplete: function() {
-                    TweenMax.to(hamburger, 0.1, {
-                        delay: 0.4,
-                        right: '30px',
-                        opacity: 1,
-                        onComplete: function() {
-                            TweenMax.to(nav, 0.2, {
-                                delay: 0.2,
-                                height: '60px',
-                                width: '60px'
-                            });
-                        }
+                    TweenMax.to(nav, 0.2, {
+                        delay: 0.2,
+                        height: '60px',
+                        width: '60px'
                     });
                 }
-
             });
         }
-    })
+
+    });
+
+
 }
 
 // Box content animation
@@ -93,10 +143,10 @@ var boxContent = document.getElementsByClassName('hover-content');
 var closeBtn = document.getElementsByClassName('close-btn');
 
 for (var i = 0; i < boxContent.length ; i++) {
-    boxContent[i].addEventListener('mouseenter',expandBox);
+    // boxContent[i].addEventListener('mouseenter',expandBox);
 }
 
-closeBtn[0].addEventListener('click', closeBox);
+// closeBtn[0].addEventListener('click', closeBox);
 
 function expandBox() {
     var currentContent = this.nextElementSibling;
@@ -280,5 +330,28 @@ function hideSkills() {
                 height: '0',
             })
         }
+    })
+}
+
+// Experience section
+
+// Find p title
+// Click on title
+// width section to 100%
+// hide title
+// show hidden content
+
+
+// Main Hello animation
+// Hide a letter every 1 sec
+var hello = document.getElementsByClassName('hello');
+var helloLetter = hello[0].innerHTML.split("")
+console.log(helloLetter);
+
+for (var i = 0 ; i < helloLetter.length ; i++) {
+    console.log(helloLetter[i]);
+
+    TweenMax.to(helloLetter[i], 0.2, {
+        opacity: 0
     })
 }
