@@ -28,13 +28,11 @@ function throttle(fn, wait, e) {
 function Go(e){
 	var SD=isNaN(e)?e.wheelDelta||-e.detail:e;
 	if( SD>0 && indx>0 ){
-        console.log('pal final');
 		if(!Anim||!Anim.isActive()){
             Anim=box[indx].anim.play();
             indx--;
         }
 	}else if( SD<0 && indx<box.length-1 ){
-        console.log('pal principio');
 		if( !Anim||!Anim.isActive() ){
             indx++;
             Anim=box[indx].anim.reverse();
@@ -63,7 +61,6 @@ if (window.innerWidth < 767) {
 }
 
 function navShow(e) {
-    console.log(menuHeight);
     TweenMax.to(nav, 0.2, {
         height: menuHeight,
         opacity: 1,
@@ -239,9 +236,6 @@ function closeBox() {
     var hoverContent = document.querySelector('.hover-content'),
         overlayContent = openedGrandGrandChild.querySelector('.overlay-content');
 
-        console.log(hoverContent);
-
-
     TweenMax.to(overlayContent, 0.2, {
         autoAlpha: 0,
         display: 'none',
@@ -259,7 +253,6 @@ function closeBox() {
                             openenedChildElementHeight[0].classList.remove('fullHeight');
                             openenedChildElementWidth[0].classList.remove('fullWidth');
                             var boxShadow = document.getElementsByClassName('box-content');
-                            console.log(boxShadow);
 
                             for (var k = 0; k < boxShadow.length ; k++) {
                                 boxShadow[k].classList.remove('hideShadow');
@@ -334,24 +327,31 @@ function hideSkills() {
 }
 
 // Experience section
+var btnSlider = document.getElementById('go-btn');
+var sliderBox = document.getElementsByClassName('l-column');
+btnSlider.addEventListener('click', slider);
+var count = 0;
 
-// Find p title
-// Click on title
-// width section to 100%
-// hide title
-// show hidden content
-
-
-// Main Hello animation
-// Hide a letter every 1 sec
-var hello = document.getElementsByClassName('hello');
-var helloLetter = hello[0].innerHTML.split("")
-console.log(helloLetter);
-
-for (var i = 0 ; i < helloLetter.length ; i++) {
-    console.log(helloLetter[i]);
-
-    TweenMax.to(helloLetter[i], 0.2, {
-        opacity: 0
-    })
+function slider() {
+    count++;
+    var countSLide = -75*count;
+    if (count <= 3) {
+        var translateBox =  'translateX(' + countSLide + '%' + ') ';
+        for (var i = 0; i < sliderBox.length; i++) {
+            sliderBox[i].style.transform = translateBox + "matrix(1, 0, 0, 1, 0, 0)";
+        }
+        if (count === 3) {
+            btnSlider.className += ' back-btn';
+        }
+    } else if (count > 3 && count <= 6){
+        var countBack = -225 + 75*(count-3);
+        var translateBox =  'translateX(' + countBack + '%' + ') ';
+        for (var i = 0; i < sliderBox.length; i++) {
+            sliderBox[i].style.transform = translateBox + "matrix(1, 0, 0, 1, 0, 0)";
+        }
+        if (count === 6) {
+            btnSlider.classList.remove('back-btn');
+            count = 0;
+        }
+    }
 }

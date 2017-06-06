@@ -16,6 +16,10 @@ $pink-medium: #E91E63;
 $pink-midLow: #FF4081;
 $pink-low: #F8BBD0;
 
+:root {
+  --position: #ffc600;
+}
+
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Abril+Fatface');
 
@@ -320,72 +324,6 @@ body {
             }
         }
 
-        // .learned {
-        //     left: 0;
-        //     bottom: 0;
-        //     width: 100%;
-        //     text-transform: uppercase;
-        //     height: calc(100% - 80px);
-        //
-        //     &-row {
-        //         display: flex;
-        //         height: 100%;
-        //         display: flex;
-        //         width: 100%;
-        //         justify-content: space-between;
-        //         align-items: center;
-        //         margin: 2em;
-        //         // background: $pink-medium;
-        //
-        //         .l-column {
-        //             height: 100%;
-        //             width: 25%;
-        //
-        //             .main {
-        //                 text-align: center;
-        //                 color: $pink-dark;
-        //             }
-        //
-        //             // &.easyproperty .main {
-        //             //     padding-top: 8vh;
-        //             // }
-        //             // &.powa .main {
-        //             //     padding-top: 60vh;
-        //             //     text-align: left;
-        //             // }
-        //             // &.portfolio .main {
-        //             //     padding-top: 45vh;
-        //             //     text-align: left;
-        //             // }
-        //             // &.stuff .main {
-        //             //     padding-top: 25vh;
-        //             // }
-        //
-        //
-        //             .exp-content {
-        //                 display: none;
-        //             }
-        //         }
-        //
-        //         .l-column:last-child {
-        //             border-right: 0;
-        //         }
-        //     }
-        //
-        //     &.positioning {
-        //         position: absolute;
-        //     }
-        //
-        //     &.totalHeight {
-        //         height: 100%;
-        //         background-size: 600% 600%;
-        //         animation: Gradient 5s ease infinite;
-        //         background: linear-gradient(270deg, $pink-dark, #D32F2F, #FF5252, $pink-midLow, $pink-dark);
-        //         z-index: 10;
-        //         margin: 0;
-        //         padding: 0;
-        //     }
-        // }
     }
 
     .welcome-section {
@@ -418,25 +356,38 @@ body {
             border-radius: 100%;
             box-shadow: 0 2px 13px rgba(50,50,50,0.4);
             animation: bounce 0.8s infinite alternate;
+            z-index: 1;
 
             img {
                 transform: scale(0.7);
                 padding-left: 2px;
             }
 
+            &:hover {
+                cursor: pointer;
+            }
+
+            &.back-btn {
+                img {
+                    transform: rotate(180deg) scale(0.7);
+                }
+            }
         }
 
         .projects-wrap {
-            height: calc(100% - 140px);
+            height: 250px;
             width: 150%;
             margin: 0 auto;
             display: flex;
             flex-direction: row;
             justify-content: space-around;
             align-items: center;
-            padding-left: 380px;
-            padding-top: 140px;
-            position: absolute;
+            margin-left: 380px;
+            position: relative;
+            bottom: 20%;
+            overflow: hidden;
+            top: 20%;
+            padding-top: 15%;
 
             .l-column {
                 flex: 1 1 25%;
@@ -448,7 +399,8 @@ body {
                 max-height: 250px;
                 align-items: center;
                 box-shadow: 0 2px 9px rgba(50,50,50,0.25);
-
+                transition: all .2s ease-in-out;
+                transform: translateX(0) matrix(1,0,0,1,0,0);
                 .main {
                     color: $white;
                 }
