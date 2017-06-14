@@ -217,10 +217,6 @@ function expandBox() {
 
 function closeBox() {
 
-    // Find openened element
-    // Remove content
-    // Remove extra classes from kids
-
     var openenedParentElement = document.getElementsByClassName('totalHeight'),
     openenedChildElementHeight = document.getElementsByClassName('fullHeight'),
     openenedChildElementWidth = document.getElementsByClassName('fullWidth'),
@@ -354,4 +350,48 @@ function slider() {
             count = 0;
         }
     }
+}
+
+// Expand boxes experience
+ //1- Get clicable elements
+ //2- Click on elements
+ //3- Expand description
+
+ var projects = document.querySelectorAll('.main');
+ console.log(projects);
+
+for (var i = 0; i < projects.length ; i++) {
+    projects[i].addEventListener('click', showProjects);
+}
+
+function showProjects() {
+    var projectContent = this.parentNode;
+    var projectParen = this.parentNode.parentNode;
+    var projectThis = this;
+    var projectContentDisplay = projectContent.querySelector('.exp-content');
+    console.log(projectContent);
+    console.log(projectParen);
+    console.log(projectThis);
+    console.log(projectContentDisplay);
+
+    TweenMax.to(projectParen, 0.2, {
+        className: '+=expand',
+        onComplete: function() {
+            TweenMax.to(projectContent, 0, {
+                display: 'block',
+                className: '+=expandCard',
+                onComplete: function() {
+                    TweenMax.to(projectContent, 0.1, {
+                        width: '100%',
+                        height: '100%',
+                    })
+                    projectThis.style.display = 'none';
+                    TweenMax.to(projectContentDisplay, 0.2, {
+                        delay: 0.2,
+                        display: 'flex',
+                    })
+                }
+            })
+        }
+    })
 }
